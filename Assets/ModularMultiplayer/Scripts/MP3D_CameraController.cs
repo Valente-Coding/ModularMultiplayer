@@ -4,7 +4,7 @@ using UnityEngine;
 /// Controls the camera movement and follows the player.
 /// This script should be attached to the main camera or a camera parent object.
 /// </summary>
-public class MP_CameraController : MonoBehaviour
+public class MP3D_CameraController : MonoBehaviour
 {
     #region Serialized Fields
     [Header("Follow Settings")]

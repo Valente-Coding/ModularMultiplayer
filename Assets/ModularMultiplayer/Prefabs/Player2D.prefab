@@ -145,8 +145,9 @@ GameObject:
   - component: {fileID: 8907967476510663325}
   - component: {fileID: 6446930970115745625}
   - component: {fileID: 6701399656308626444}
-  - component: {fileID: 7917474929512703263}
   - component: {fileID: 8170458945537529332}
+  - component: {fileID: 4807576040458405937}
+  - component: {fileID: 8573525310732632781}
   m_Layer: 0
   m_Name: Player2D
   m_TagString: Untagged
@@ -211,19 +212,6 @@ MonoBehaviour:
   m_Speed: 5
   m_EnableVerticalMovement: 1
   m_EnableHorizontalMovement: 1
---- !u!114 &7917474929512703263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6037020978586247062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 079f7838c1d8a6b43846af9e54012cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &8170458945537529332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +258,49 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &4807576040458405937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037020978586247062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0399c60856373554e8f3b09822321b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  m_DefaultVelocity: 0
+  m_MinMaxZoom:
+    Min: 2
+    Max: 10
+  m_ZoomSpeed: 1
+  m_Stiffness: 0.1
+--- !u!50 &8573525310732632781
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037020978586247062}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
