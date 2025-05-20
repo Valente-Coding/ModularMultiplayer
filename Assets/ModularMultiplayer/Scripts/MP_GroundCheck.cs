@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
 public class MP_GroundCheck : NetworkBehaviour
 {
-    [SerializeField] private Transform m_StartingPosition;
+    [SerializeField] private List<Transform> m_CheckPositions;
     [SerializeField] private LayerMask m_GroundLayer;
     [SerializeField] private float m_CheckDistance = 0.05f;
     [SerializeField] private bool m_Grounded = false;
@@ -14,6 +15,11 @@ public class MP_GroundCheck : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        Grounded = Physics2D.Raycast(m_StartingPosition.position, Vector3.down, m_CheckDistance, m_GroundLayer);
+        bool l_FoundGround = false;
+        foreach (Transform l_Position in m_CheckPositions)
+            if (Physics2D.Raycast(l_Position.position, Vector3.down, m_CheckDistance, m_GroundLayer))
+                l_FoundGround = true;
+
+        Grounded = l_FoundGround;
     }
 }
