@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4118091797609573561}
   - component: {fileID: 5333566341244927328}
   - component: {fileID: 4177957858493245227}
+  - component: {fileID: 1856920227436474022}
+  - component: {fileID: 7991046052038168484}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -110,6 +112,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1856920227436474022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838699513216561645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f8146ad6d334849bc3c51770ef35bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 5333566341244927328}
+--- !u!114 &7991046052038168484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838699513216561645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6545ae85ae73dfe4aa4b5f99aa1bf6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &2235977543914895157
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +190,7 @@ GameObject:
   - component: {fileID: 1137852899144060968}
   - component: {fileID: 369507240444059180}
   - component: {fileID: 4490833450369868769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   m_MovementSpeed: 100
-  m_SprintSpeedMultiplier: 2
+  m_SprintSpeedMultiplier: 1.5
   m_CanJump: 0
   m_CanSprint: 1
   m_JumpForce: 500

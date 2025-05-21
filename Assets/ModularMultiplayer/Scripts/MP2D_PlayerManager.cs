@@ -9,6 +9,11 @@ public class MP2D_PlayerManager : NetworkBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_Sprite;
 
+    private void Start()
+    {
+        if (!IsOwner) m_Sprite.sortingOrder = -1;
+    }
+
     public void SetRespawnPoint(Transform p_NewTransform)
     {
         if (!IsOwner) return;
