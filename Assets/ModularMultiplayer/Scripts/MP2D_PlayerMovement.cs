@@ -51,6 +51,7 @@ public class MP2D_PlayerMovement : NetworkBehaviour
     {
         m_IsRunning = p_IsSprinting;
         m_Velocity.x = p_HorizontalInput * m_MovementSpeed * (p_IsSprinting ? m_SprintSpeedMultiplier : 1f);
+        transform.localScale = (p_HorizontalInput < 0 && transform.localScale.x > 0) || (p_HorizontalInput > 0 && transform.localScale.x < 0) ? new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z) : transform.localScale;
     }
 
     private void Jump(bool p_IsJumping, bool p_IsCancelingJump, bool p_Grounded)
