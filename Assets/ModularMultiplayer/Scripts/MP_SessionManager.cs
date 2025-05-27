@@ -79,10 +79,10 @@ public class MP_SessionManager : MonoBehaviour
 
             m_CurrentSession = await MultiplayerService.Instance.CreateSessionAsync(l_Options);
             m_HostSession = m_CurrentSession as IHostSession;
-            
+
             Debug.Log($"Session {m_CurrentSession.Id} created! Join code: {m_CurrentSession.Code}");
             OnSessionCreated?.Invoke(m_CurrentSession);
-            
+
             return m_CurrentSession;
         }
         catch (Exception e)

@@ -225,7 +225,7 @@ MonoBehaviour:
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
+  AllowOwnerToParent: 1
 --- !u!114 &8279593261850605349
 MonoBehaviour:
   m_ObjectHideFlags: 0
