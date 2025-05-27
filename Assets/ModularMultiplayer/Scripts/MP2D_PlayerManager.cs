@@ -6,15 +6,17 @@ public class MP2D_PlayerManager : NetworkBehaviour
     [Header("Player Conponents")]
     [SerializeField] private MP2D_PlayerMovement m_PlayerMovement;
     [SerializeField] private MP_RespawnPoint m_PlayerRespawn;
+    [SerializeField] private MP_NetworkedObjectSpawner m_PlayerObjectSpawner;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_Sprite;
     [SerializeField] private Transform m_HoldItemPivot;
 
-    private bool m_HoldingItem;
+    private NetworkObject m_HoldingItem;
 
     public static MP2D_PlayerManager Instance { get; private set; }
     public Transform HoldItemPivot { get => m_HoldItemPivot; set => m_HoldItemPivot = value; }
-    public bool HoldingItem { get => m_HoldingItem; set => m_HoldingItem = value; }
+    public NetworkObject HoldingItem { get => m_HoldingItem; set => m_HoldingItem = value; }
+    public MP_NetworkedObjectSpawner PlayerObjectSpawner { get => m_PlayerObjectSpawner; set => m_PlayerObjectSpawner = value; }
 
     private void Start()
     {
@@ -61,6 +63,6 @@ public class MP2D_PlayerManager : NetworkBehaviour
         m_Animator.SetBool("Walking", m_PlayerMovement.Velocity.x != 0 && !m_PlayerMovement.IsRunning);
         m_Animator.SetBool("Running", m_PlayerMovement.IsRunning);
         m_Animator.SetBool("Grounded", m_PlayerMovement.IsGrounded);
-        m_Animator.SetBool("Holding", m_HoldingItem);
+        m_Animator.SetBool("Holding", m_HoldingItem != null);
     }
 }

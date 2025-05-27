@@ -5,14 +5,14 @@ A comprehensive solution for managing GameObjects across multiplayer clients usi
 ## 📁 Files Overview
 
 ### Core Scripts
-- **`NetworkedGameObjectManager.cs`** - Main manager class for handling networked GameObjects
-- **`NetworkedObjectRegistry.cs`** - ScriptableObject for registering spawnable prefabs
-- **`NetworkedObjectSpawner.cs`** - Example implementation and utility script
-- **`Editor/NetworkedObjectRegistryEditor.cs`** - Custom Unity Editor for the registry
+- **`MP_NetworkedGameObjectManager.cs`** - Main manager class for handling networked GameObjects
+- **`MP_NetworkedObjectRegistry.cs`** - ScriptableObject for registering spawnable prefabs
+- **`MP_NetworkedObjectSpawner.cs`** - Example implementation and utility script
+- **`Editor/MP_NetworkedObjectRegistryEditor.cs`** - Custom Unity Editor for the registry
 
 ## 🚀 Features
 
-### NetworkedGameObjectManager
+### MP_NetworkedGameObjectManager
 - ✅ **Centralized GameObject Management** - Single point of control for all networked objects
 - ✅ **Server/Client Architecture** - Proper separation of server authority and client requests
 - ✅ **Ownership Management** - Track and transfer ownership between clients
@@ -23,14 +23,14 @@ A comprehensive solution for managing GameObjects across multiplayer clients usi
 - ✅ **Performance Optimized** - Efficient caching and lookup systems
 - ✅ **Debugging Support** - Optional debug logging for troubleshooting
 
-### NetworkedObjectRegistry
+### MP_NetworkedObjectRegistry
 - ✅ **Prefab Management** - Centralized registry for all spawnable prefabs
 - ✅ **Unique ID System** - Each prefab gets a unique network-safe ID
 - ✅ **Validation** - Automatic validation of NetworkObject components
 - ✅ **Editor Integration** - Custom Unity Editor for easy management
 - ✅ **Runtime Lookup** - Fast prefab lookup by ID or GameObject reference
 
-### NetworkedObjectSpawner
+### MP_NetworkedObjectSpawner
 - ✅ **Example Implementation** - Shows best practices for usage
 - ✅ **Input Handling** - Keyboard controls for testing
 - ✅ **Auto-Spawning** - Automatic object spawning for testing
@@ -47,16 +47,16 @@ A comprehensive solution for managing GameObjects across multiplayer clients usi
 
 ### 2. Setup the Manager
 1. Create an empty GameObject in your scene
-2. Add the `NetworkedGameObjectManager` component
-3. Assign your `NetworkedObjectRegistry` to the `Object Registry` field
+2. Add the `MP_NetworkedGameObjectManager` component
+3. Assign your `MP_NetworkedObjectRegistry` to the `Object Registry` field
 4. Configure settings (max objects, debug logging, etc.)
 
 ### 3. Add to Network Prefabs
-1. In your `NetworkManager`, add the `NetworkedGameObjectManager` prefab to the Network Prefabs list
+1. In your `NetworkManager`, add the `MP_NetworkedGameObjectManager` prefab to the Network Prefabs list
 2. Ensure all your spawnable prefabs are also in the Network Prefabs list
 
 ### 4. (Optional) Add Example Spawner
-1. Add the `NetworkedObjectSpawner` component to test the system
+1. Add the `MP_NetworkedObjectSpawner` component to test the system
 2. Configure spawn points and input keys
 3. Assign the same registry used by the manager
 
@@ -65,7 +65,7 @@ A comprehensive solution for managing GameObjects across multiplayer clients usi
 ### Basic Spawning
 ```csharp
 // Spawn an object by prefab ID
-NetworkedGameObjectManager.Instance.SpawnNetworkedObject(
+MP_NetworkedGameObjectManager.Instance.SpawnNetworkedObject(
     prefabId: 0, 
     position: Vector3.zero, 
     rotation: Quaternion.identity, 
@@ -76,25 +76,25 @@ NetworkedGameObjectManager.Instance.SpawnNetworkedObject(
 ### Destroying Objects
 ```csharp
 // Destroy a specific object
-NetworkedGameObjectManager.Instance.DestroyNetworkedObject(networkObject);
+MP_NetworkedGameObjectManager.Instance.DestroyNetworkedObject(networkObject);
 ```
 
 ### Ownership Management
 ```csharp
 // Transfer ownership to another client
-NetworkedGameObjectManager.Instance.ChangeObjectOwnership(networkObject, newOwnerClientId);
+MP_NetworkedGameObjectManager.Instance.ChangeObjectOwnership(networkObject, newOwnerClientId);
 
 // Get all objects owned by a client
-var ownedObjects = NetworkedGameObjectManager.Instance.GetObjectsOwnedByClient(clientId);
+var ownedObjects = MP_NetworkedGameObjectManager.Instance.GetObjectsOwnedByClient(clientId);
 ```
 
 ### Object Manipulation
 ```csharp
 // Teleport an object
-NetworkedGameObjectManager.Instance.TeleportObject(networkObject, newPosition);
+MP_NetworkedGameObjectManager.Instance.TeleportObject(networkObject, newPosition);
 
 // Set active state
-NetworkedGameObjectManager.Instance.SetObjectActive(networkObject, false);
+MP_NetworkedGameObjectManager.Instance.SetObjectActive(networkObject, false);
 ```
 
 ### Event Handling
@@ -102,20 +102,20 @@ NetworkedGameObjectManager.Instance.SetObjectActive(networkObject, false);
 void Start()
 {
     // Subscribe to events
-    NetworkedGameObjectManager.Instance.OnGameObjectSpawned += OnObjectSpawned;
-    NetworkedGameObjectManager.Instance.OnGameObjectDestroyed += OnObjectDestroyed;
-    NetworkedGameObjectManager.Instance.OnOwnershipChanged += OnOwnershipChanged;
+    MP_NetworkedGameObjectManager.Instance.OnGameObjectSpawned += OnObjectSpawned;
+    MP_NetworkedGameObjectManager.Instance.OnGameObjectDestroyed += OnObjectDestroyed;
+    MP_NetworkedGameObjectManager.Instance.OnOwnershipChanged += OnOwnershipChanged;
 }
 
-private void OnObjectSpawned(object sender, NetworkedGameObjectManager.OnGameObjectSpawnedEventArgs e)
+private void OnObjectSpawned(object sender, MP_NetworkedGameObjectManager.OnGameObjectSpawnedEventArgs e)
 {
     Debug.Log($"Object spawned: {e.spawnedObject.name} by client {e.ownerClientId}");
 }
 ```
 
-## 🎮 Testing Controls (NetworkedObjectSpawner)
+## 🎮 Testing Controls (MP_NetworkedObjectSpawner)
 
-When using the example `NetworkedObjectSpawner`:
+When using the example `MP_NetworkedObjectSpawner`:
 
 - **G Key** - Spawn a random object
 - **H Key** - Destroy a random object
@@ -123,7 +123,7 @@ When using the example `NetworkedObjectSpawner`:
 
 ## 📋 Registry Management
 
-The `NetworkedObjectRegistry` provides a custom Unity Editor with these features:
+The `MP_NetworkedObjectRegistry` provides a custom Unity Editor with these features:
 
 ### Adding Prefabs
 1. Enter a name for your prefab entry
@@ -146,12 +146,12 @@ The editor automatically warns about:
 
 ## 🔧 Configuration Options
 
-### NetworkedGameObjectManager Settings
+### MP_NetworkedGameObjectManager Settings
 - **Enable Debug Logs** - Show detailed logging for troubleshooting
 - **Max Managed Objects** - Maximum number of objects that can be managed (performance limit)
-- **Object Registry** - Reference to your NetworkedObjectRegistry
+- **Object Registry** - Reference to your MP_NetworkedObjectRegistry
 
-### NetworkedObjectSpawner Settings
+### MP_NetworkedObjectSpawner Settings
 - **Auto Spawn on Start** - Automatically spawn objects when the game starts
 - **Auto Spawn Count** - Maximum number of objects to auto-spawn
 - **Auto Spawn Interval** - Time between auto-spawns
@@ -187,7 +187,7 @@ The editor automatically warns about:
 **Objects not spawning:**
 - Ensure prefabs are in the NetworkManager's Network Prefabs list
 - Check that prefabs have NetworkObject components
-- Verify the NetworkedGameObjectManager is spawned as a NetworkObject
+- Verify the MP_NetworkedGameObjectManager is spawned as a NetworkObject
 
 **Registry not working:**
 - Make sure the registry is assigned to the manager
@@ -195,7 +195,7 @@ The editor automatically warns about:
 - Ensure prefab IDs are unique
 
 **Events not firing:**
-- Subscribe to events after NetworkedGameObjectManager.Instance is available
+- Subscribe to events after MP_NetworkedGameObjectManager.Instance is available
 - Check that the manager is properly spawned on the network
 
 **Performance issues:**
@@ -205,7 +205,7 @@ The editor automatically warns about:
 
 ### Debug Information
 
-Enable debug logs in the NetworkedGameObjectManager to see:
+Enable debug logs in the MP_NetworkedGameObjectManager to see:
 - Object spawn/destroy operations
 - Ownership changes
 - Client disconnect cleanup
@@ -218,10 +218,10 @@ This system is designed to work alongside the existing kitchen game architecture
 ### Similar to KitchenObject Pattern
 ```csharp
 // Instead of KitchenObject.SpawnKitchenObject()
-NetworkedGameObjectManager.Instance.SpawnNetworkedObject(prefabId, position, rotation, ownerId);
+MP_NetworkedGameObjectManager.Instance.SpawnNetworkedObject(prefabId, position, rotation, ownerId);
 
 // Instead of KitchenObject.DestroyKitchenObject()
-NetworkedGameObjectManager.Instance.DestroyNetworkedObject(networkObject);
+MP_NetworkedGameObjectManager.Instance.DestroyNetworkedObject(networkObject);
 ```
 
 ### Works with Existing NetworkBehaviour Classes

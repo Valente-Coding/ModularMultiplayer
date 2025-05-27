@@ -242,6 +242,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_PlayerMovement: {fileID: 8208122612747043740}
   m_PlayerRespawn: {fileID: 2497440225271638029}
+  m_PlayerObjectSpawner: {fileID: 3870547735917173780}
   m_Animator: {fileID: 5333566341244927328}
   m_Sprite: {fileID: 4177957858493245227}
   m_HoldItemPivot: {fileID: 552698053383466171}
@@ -467,18 +468,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  objectRegistry: {fileID: 11400000, guid: 2f69634e72757db48a4d9d02e43c8b97, type: 2}
-  spawnPoints: []
-  spawnRadius: 5
-  groundLayerMask:
+  m_ObjectRegistry: {fileID: 11400000, guid: a0d9194ba4b57914285272a10f874783, type: 2}
+  m_SpawnPoints: []
+  m_SpawnRadius: 5
+  m_GroundLayerMask:
     serializedVersion: 2
-    m_Bits: 1
-  autoSpawnOnStart: 0
-  autoSpawnCount: 5
-  autoSpawnInterval: 2
-  spawnKey: 101
-  destroyKey: 104
-  teleportKey: 106
+    m_Bits: 64
+  m_AutoSpawnOnStart: 0
+  m_AutoSpawnCount: 5
+  m_AutoSpawnInterval: 2
+  m_SpawnKey: 101
+  m_DestroyKey: 101
+  m_TeleportKey: 106
 --- !u!1 &5345736497151317381
 GameObject:
   m_ObjectHideFlags: 0
