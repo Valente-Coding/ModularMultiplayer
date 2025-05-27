@@ -305,14 +305,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132408859}
-  - component: {fileID: 132408860}
   m_Layer: 5
   m_Name: Show Session Code
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &132408859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -335,20 +334,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &132408860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132408858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7972ee9083a40b9a8ff20ae8150372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Text: {fileID: 1175468517}
-  m_CopyCodeButton: {fileID: 1254609180}
 --- !u!1001 &198225204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +413,6 @@ GameObject:
   m_Component:
   - component: {fileID: 231865987}
   - component: {fileID: 231865989}
-  - component: {fileID: 231865988}
   m_Layer: 5
   m_Name: Join Session By Code
   m_TagString: Untagged
@@ -457,29 +441,6 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: -10}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &231865988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231865986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b894d3ecaad0434cbb21c3eec3b7c3da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WidgetConfiguration: {fileID: 11400000, guid: 919793ec5e0d0e848b8ace0457e8b50f, type: 2}
-  JoiningSession:
-    m_PersistentCalls:
-      m_Calls: []
-  JoinedSession:
-    m_PersistentCalls:
-      m_Calls: []
-  FailedToJoinSession:
-    m_PersistentCalls:
-      m_Calls: []
-  m_EnterSessionButton: {fileID: 0}
 --- !u!114 &231865989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,7 +957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367667213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813059751}
+        m_TargetAssemblyTypeName: MP_ConnectLan, Assembly-CSharp
+        m_MethodName: StartHost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &367667213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,7 +1782,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 885512263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813059751}
+        m_TargetAssemblyTypeName: MP_ConnectLan, Assembly-CSharp
+        m_MethodName: StartClient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &885512263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2171,7 +2156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1083644496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2187,10 +2172,10 @@ RectTransform:
   - {fileID: 83482787}
   m_Father: {fileID: 2073008501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.502495, y: -15}
+  m_SizeDelta: {x: 155.00499, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083644497
 MonoBehaviour:
@@ -3864,8 +3849,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1629239974}
-  - component: {fileID: 1629239972}
   - component: {fileID: 1629239975}
+  - component: {fileID: 1629239976}
   m_Layer: 0
   m_Name: NetworkedGameObjects
   m_TagString: Untagged
@@ -3873,31 +3858,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1629239972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629239971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2028430185
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
 --- !u!4 &1629239974
 Transform:
   m_ObjectHideFlags: 0
@@ -3922,12 +3882,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1629239971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d70c5e44f0c5d4da5a75ef0715a1fe, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1156553763
+  InScenePlacedSourceGlobalObjectIdHash: 2697616790
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &1629239976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629239971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35610af3e8ac26b49b2e28a1b80a7d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  networkObjectPrefabs:
-  - {fileID: 3369155657516129871, guid: 2337301336bf34a4bbe35786f612b3e2, type: 3}
+  enableDebugLogs: 1
+  maxManagedObjects: 1000
+  objectRegistry: {fileID: 11400000, guid: 2f69634e72757db48a4d9d02e43c8b97, type: 2}
 --- !u!1 &1642220039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,6 +4477,7 @@ GameObject:
   - component: {fileID: 1813059750}
   - component: {fileID: 1813059749}
   - component: {fileID: 1813059748}
+  - component: {fileID: 1813059751}
   m_Layer: 0
   m_Name: MultiplayerManager
   m_TagString: Untagged
@@ -4585,6 +4572,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813059751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813059747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb0200a911e5544690c2c99e6e3a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1823302678
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,7 +5002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1893266643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5019,10 +5018,10 @@ RectTransform:
   - {fileID: 2052523557}
   m_Father: {fileID: 231865987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.502495, y: -15}
+  m_SizeDelta: {x: 155.00499, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1893266644
 MonoBehaviour:
@@ -5567,7 +5566,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2073008501}
   - component: {fileID: 2073008503}
-  - component: {fileID: 2073008502}
   m_Layer: 5
   m_Name: Create Session
   m_TagString: Untagged
@@ -5596,29 +5594,6 @@ RectTransform:
   m_AnchoredPosition: {x: 20, y: -10}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &2073008502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073008500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5743fb82daa4d83adec54bcbb3e9655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WidgetConfiguration: {fileID: 11400000, guid: 919793ec5e0d0e848b8ace0457e8b50f, type: 2}
-  JoiningSession:
-    m_PersistentCalls:
-      m_Calls: []
-  JoinedSession:
-    m_PersistentCalls:
-      m_Calls: []
-  FailedToJoinSession:
-    m_PersistentCalls:
-      m_Calls: []
-  m_EnterSessionButton: {fileID: 0}
 --- !u!114 &2073008503
 MonoBehaviour:
   m_ObjectHideFlags: 0

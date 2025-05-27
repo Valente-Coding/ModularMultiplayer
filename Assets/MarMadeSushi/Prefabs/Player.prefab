@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 1137852899144060968}
   - component: {fileID: 369507240444059180}
   - component: {fileID: 4490833450369868769}
+  - component: {fileID: 3870547735917173780}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -453,6 +454,31 @@ MonoBehaviour:
   m_ZoomSpeed: 1
   m_Stiffness: 5
   m_Delay: 0.1
+--- !u!114 &3870547735917173780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332806668608986622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7425e2f3345ef4e82ddafe4aed37e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  objectRegistry: {fileID: 11400000, guid: 2f69634e72757db48a4d9d02e43c8b97, type: 2}
+  spawnPoints: []
+  spawnRadius: 5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  autoSpawnOnStart: 0
+  autoSpawnCount: 5
+  autoSpawnInterval: 2
+  spawnKey: 101
+  destroyKey: 104
+  teleportKey: 106
 --- !u!1 &5345736497151317381
 GameObject:
   m_ObjectHideFlags: 0

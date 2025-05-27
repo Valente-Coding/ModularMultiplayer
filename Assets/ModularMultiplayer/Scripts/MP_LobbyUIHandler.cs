@@ -104,7 +104,7 @@ public class MP_LobbyUIHandler : MonoBehaviour
         var l_Session = MP_SessionManager.Instance.CurrentSession;
         if (l_Session == null) return;
         
-        if (m_SessionCodeText != null) m_SessionCodeText.text = $"Session Code: {l_Session.Code}";
+        if (m_SessionCodeText != null) m_SessionCodeText.text = $"{l_Session.Code}";
         if (m_PlayerCountText != null) m_PlayerCountText.text = $"Players: {l_Session.Players.Count}/{l_Session.MaxPlayers}";
         
         if (m_StartGameButton != null)
