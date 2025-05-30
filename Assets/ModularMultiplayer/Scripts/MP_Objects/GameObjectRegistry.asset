@@ -20,3 +20,8 @@ MonoBehaviour:
     m_Prefab: {fileID: 3369155657516129871, guid: 2337301336bf34a4bbe35786f612b3e2, type: 3}
     m_Description: Just  Rice
     m_IsActive: 1
+  - m_EntryName: RiceBag
+    m_PrefabId: 1
+    m_Prefab: {fileID: 3369155657516129871, guid: 6eba8033a47a88c44a32ae46e379bb66, type: 3}
+    m_Description: 
+    m_IsActive: 1

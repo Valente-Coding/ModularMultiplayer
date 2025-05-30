@@ -8,8 +8,12 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
     [SerializeField] private string m_PlayerTag = "Player";
     [SerializeField] private bool m_ServerOnly = true;
     [SerializeField] private bool m_LocalPlayerOnly = false;
+    [SerializeField] private KeyCode m_InteractKey = KeyCode.E;
     [SerializeField] private UnityEvent m_EnterEvents;
     [SerializeField] private UnityEvent m_ExitEvents;
+    [SerializeField] private UnityEvent m_OnInteractEvents;
+
+    private bool m_IsInsideTrigger = false;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +23,15 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         HandleTriggerEvent(collision, false);
+    }
+
+    void Update()
+    {
+        if (!m_LocalPlayerOnly) return;
+
+        if (m_IsInsideTrigger)
+            if (Input.GetKeyUp(m_InteractKey))
+                m_OnInteractEvents?.Invoke();
     }
 
     private void HandleTriggerEvent(Collider2D collision, bool isEnter)
@@ -40,6 +53,7 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
         {
             // Only execute for the local player
             if (!networkObject.IsOwner) return;
+            m_IsInsideTrigger = isEnter;
         }
         else
         {

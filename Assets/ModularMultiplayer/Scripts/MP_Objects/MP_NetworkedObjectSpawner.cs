@@ -32,10 +32,6 @@ public class MP_NetworkedObjectSpawner : NetworkBehaviour
     private bool m_CanSpawnPrefab = false;
     private bool m_CanDespawnPrefab = false;
 
-    public int SpawnPrefabId { get => m_SpawnPrefabId; set => m_SpawnPrefabId = value; }
-    public bool CanSpawnPrefab { get => m_CanSpawnPrefab; set => m_CanSpawnPrefab = value; }
-    public bool CanDespawnPrefab { get => m_CanDespawnPrefab; set => m_CanDespawnPrefab = value; }
-
     private void Start()
     {
         if (MP_NetworkedGameObjectManager.Instance != null)
@@ -59,11 +55,6 @@ public class MP_NetworkedObjectSpawner : NetworkBehaviour
 
     private void HandleInput()
     {
-        // Spawn object on key press
-        if (m_CanSpawnPrefab && Input.GetKeyDown(m_SpawnKey))
-        {
-            SpawnObjectById(m_SpawnPrefabId, Vector3.zero, Quaternion.Euler(0, 0, 0));
-        }
 
         // Despawn object on key press
         if (m_CanDespawnPrefab && Input.GetKeyDown(m_DestroyKey))
@@ -150,6 +141,17 @@ public class MP_NetworkedObjectSpawner : NetworkBehaviour
             NetworkManager.Singleton.LocalClientId
         );
     }
+    
+    public void DespawnObject(NetworkObject p_Object)
+    {
+        if (MP_NetworkedGameObjectManager.Instance == null)
+        {
+            Debug.LogWarning("[MP_NetworkedObjectSpawner] MP_NetworkedGameObjectManager not available");
+            return;
+        }
+
+        MP_NetworkedGameObjectManager.Instance.DestroyNetworkedObject(p_Object);
+    }
 
     /// <summary>
     /// Destroys a random spawned object.
@@ -169,7 +171,7 @@ public class MP_NetworkedObjectSpawner : NetworkBehaviour
 
         // Select random object
         NetworkObject l_RandomObject = m_SpawnedObjects[Random.Range(0, m_SpawnedObjects.Count)];
-        
+
         Debug.Log($"[MP_NetworkedObjectSpawner] Destroying object: {l_RandomObject.name}");
         MP_NetworkedGameObjectManager.Instance.DestroyNetworkedObject(l_RandomObject);
     }
