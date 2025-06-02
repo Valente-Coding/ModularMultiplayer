@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3364077456591198463}
   - component: {fileID: 1953477493583181021}
   - component: {fileID: 7140434219350971626}
-  - component: {fileID: 4051056721716985177}
+  - component: {fileID: 6146808236124582266}
   m_Layer: 0
   m_Name: DeleteGrabbedObject
   m_TagString: Untagged
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 970478313
+  GlobalObjectIdHash: 3965407623
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -210,24 +210,13 @@ MonoBehaviour:
   m_PlayerTag: Player
   m_ServerOnly: 0
   m_LocalPlayerOnly: 1
+  m_InteractKey: 101
   m_EnterEvents:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2518988566488415345}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 4051056721716985177}
-        m_TargetAssemblyTypeName: MP_DespawnNetworkPrefab, Assembly-CSharp
-        m_MethodName: SetPlayerAllowedToDespawnPrefab
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -252,10 +241,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4051056721716985177}
-        m_TargetAssemblyTypeName: MP_DespawnNetworkPrefab, Assembly-CSharp
-        m_MethodName: SetPlayerAllowedToDespawnPrefab
-        m_Mode: 6
+  m_OnInteractEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6146808236124582266}
+        m_TargetAssemblyTypeName: MP2D_PlayerItemManager, Assembly-CSharp
+        m_MethodName: RemovePlayerItem
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -264,7 +256,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4051056721716985177
+--- !u!114 &6146808236124582266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,6 +265,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7297026431928338210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a520ec28b5dde247a63d391be528508, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f969117c975e0a42aed8ebb396d6bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
