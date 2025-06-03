@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MarMadeSushi/Scenes/GameScene.unity
     guid: 087b6833a216fc349b4dc8685c54cd9c
-  - enabled: 1
-    path: Assets/ModularMultiplayer/Scenes/MP2D_Test.unity
-    guid: 9fc81744335e9f844b2491450d529a36
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

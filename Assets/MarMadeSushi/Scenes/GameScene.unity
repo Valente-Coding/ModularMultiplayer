@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &132408859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -989,19 +989,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367667213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1813059751}
-        m_TargetAssemblyTypeName: MP_ConnectLan, Assembly-CSharp
-        m_MethodName: StartHost
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &367667213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,7 +2146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1083644496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2174,10 +2162,10 @@ RectTransform:
   - {fileID: 83482787}
   m_Father: {fileID: 2073008501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.502495, y: -15}
-  m_SizeDelta: {x: 155.00499, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083644497
 MonoBehaviour:
@@ -2365,6 +2353,7 @@ GameObject:
   - component: {fileID: 1164370465}
   - component: {fileID: 1164370464}
   - component: {fileID: 1164370463}
+  - component: {fileID: 1164370467}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2457,6 +2446,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1164370467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164370462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cab2fb06753ca42bdcfa7b6ebc752a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MainMenuPanel: {fileID: 0}
+  m_LobbyPanel: {fileID: 0}
+  m_WaitingPanel: {fileID: 0}
+  m_CreateButton: {fileID: 367667212}
+  m_JoinButton: {fileID: 885512262}
+  m_QuickJoinButton: {fileID: 0}
+  m_JoinCodeInput: {fileID: 1083644497}
+  m_SessionCodeText: {fileID: 1175468517}
+  m_PlayerCountText: {fileID: 0}
+  m_StartGameButton: {fileID: 0}
+  m_LeaveLobbyButton: {fileID: 0}
+  m_CancelButton: {fileID: 0}
+  m_StatusText: {fileID: 0}
+  m_MaxPlayers: 4
+  m_MatchmakingQueue: Default
+  m_PlayerListGO: {fileID: 0}
+  m_PlayerRowPrefab: {fileID: 0}
 --- !u!1 &1175468515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,6 +3216,7 @@ MonoBehaviour:
   - FoodGameObject: {fileID: 3369155657516129871, guid: 2337301336bf34a4bbe35786f612b3e2, type: 3}
     FoodSprite: {fileID: -942637036, guid: 2c2b399f323dfd8449dbb61ec1faffd9, type: 3}
   m_ChooseFoodDelay: 5
+  m_TimeToEatFood: 10
 --- !u!114 &1279222575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4797,6 +4816,7 @@ GameObject:
   - component: {fileID: 1813059750}
   - component: {fileID: 1813059749}
   - component: {fileID: 1813059748}
+  - component: {fileID: 1813059752}
   - component: {fileID: 1813059751}
   m_Layer: 0
   m_Name: MultiplayerManager
@@ -4829,7 +4849,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
-    ServerListenAddress: 127.0.0.1
+    ServerListenAddress: 10.0.16.206
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -4899,9 +4919,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813059747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adb0200a911e5544690c2c99e6e3a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1813059752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813059747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89383425b0f7ee843a8491e019cec824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1823302678
@@ -5322,7 +5354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1893266643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5338,10 +5370,10 @@ RectTransform:
   - {fileID: 2052523557}
   m_Father: {fileID: 231865987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.502495, y: -15}
-  m_SizeDelta: {x: 155.00499, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1893266644
 MonoBehaviour:

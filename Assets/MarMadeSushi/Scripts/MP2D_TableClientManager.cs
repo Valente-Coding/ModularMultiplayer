@@ -71,6 +71,8 @@ public class MP2D_TableClientManager : NetworkBehaviour
         {
             m_TableClientSprite.enabled = false;
             m_TableClientEmoteSprite.enabled = false;
+
+            StartCoroutine(SpawnTableClient());
             return;
         }
 
