@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &132408859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -989,7 +989,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367667213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813059751}
+        m_TargetAssemblyTypeName: MP_ConnectLan, Assembly-CSharp
+        m_MethodName: StartHost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &367667213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,7 +2158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1083644496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2162,10 +2174,10 @@ RectTransform:
   - {fileID: 83482787}
   m_Father: {fileID: 2073008501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.502495, y: -15}
+  m_SizeDelta: {x: 155.00499, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083644497
 MonoBehaviour:
@@ -2453,7 +2465,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164370462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58cab2fb06753ca42bdcfa7b6ebc752a, type: 3}
   m_Name: 
@@ -3202,15 +3214,15 @@ MonoBehaviour:
     EmoteSprite: {fileID: -256903132, guid: 3cb099affeac03d44b232c45f1b78edc, type: 3}
   - EmoteClientState: 2
     EmoteSprite: {fileID: -477434964, guid: 0b4f5a358467ca344889d694a40733c8, type: 3}
-  - EmoteClientState: 3
-    EmoteSprite: {fileID: -1565139270, guid: 3cb099affeac03d44b232c45f1b78edc, type: 3}
-  - EmoteClientState: 6
-    EmoteSprite: {fileID: -1390907734, guid: 1b268db5ba32d1145b561734b09377c0, type: 3}
-  - EmoteClientState: 7
-    EmoteSprite: {fileID: 799552019, guid: 0259793a322423044922ccd08321d883, type: 3}
   - EmoteClientState: 4
-    EmoteSprite: {fileID: 54029168, guid: 709e5e811fd69f644937bb9187259bda, type: 3}
+    EmoteSprite: {fileID: -1565139270, guid: 3cb099affeac03d44b232c45f1b78edc, type: 3}
+  - EmoteClientState: 7
+    EmoteSprite: {fileID: -1390907734, guid: 1b268db5ba32d1145b561734b09377c0, type: 3}
+  - EmoteClientState: 8
+    EmoteSprite: {fileID: 799552019, guid: 0259793a322423044922ccd08321d883, type: 3}
   - EmoteClientState: 5
+    EmoteSprite: {fileID: 54029168, guid: 709e5e811fd69f644937bb9187259bda, type: 3}
+  - EmoteClientState: 6
     EmoteSprite: {fileID: 1428570961, guid: 71a691b86785fd94782249438d8b5a64, type: 3}
   m_FoodChoices:
   - FoodGameObject: {fileID: 3369155657516129871, guid: 2337301336bf34a4bbe35786f612b3e2, type: 3}
@@ -4849,7 +4861,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
-    ServerListenAddress: 10.0.16.206
+    ServerListenAddress: 127.0.0.1
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -5354,7 +5366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1893266643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5370,10 +5382,10 @@ RectTransform:
   - {fileID: 2052523557}
   m_Father: {fileID: 231865987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.502495, y: -15}
+  m_SizeDelta: {x: 155.00499, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1893266644
 MonoBehaviour:
