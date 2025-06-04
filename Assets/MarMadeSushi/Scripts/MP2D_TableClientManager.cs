@@ -11,6 +11,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
         None,
         Choosing,
         ReadyToAsk,
+        Asking,
         Waiting,
         Happy,
         Mad,
@@ -60,9 +61,18 @@ public class MP2D_TableClientManager : NetworkBehaviour
         m_ClientItemCollector.OnCollectCorrectItem.AddListener(CorrectFoodDelivered);
         m_ClientItemCollector.OnCollectWrongItem.AddListener(WrongFoodDelivered);
 
+        SyncNewPlayer();
+
         if (!IsServer) return;
 
         StartCoroutine(SpawnTableClient());
+    }
+
+    private void SyncNewPlayer()
+    {
+        OnTableClientStateChange(TableClientState.None, m_CurrentState.Value);
+        OnTableClientSpriteChange(-1, m_CurrentClientSprite.Value);
+        OnTableClientFoodChange(-1, m_CurrentFood.Value);
     }
 
     private void OnTableClientStateChange(TableClientState p_OldValue, TableClientState p_NewValue)
@@ -79,7 +89,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
         Sprite l_EmoteSprite = m_TableClientEmotes.Find(emote => emote.EmoteClientState == p_NewValue).EmoteSprite;
         if (l_EmoteSprite == null)
         {
-            m_TableClientEmoteSprite.enabled = false;
+            //m_TableClientEmoteSprite.enabled = false;
             return;
         }
 
@@ -146,11 +156,15 @@ public class MP2D_TableClientManager : NetworkBehaviour
         yield return new WaitForSeconds(p_Delay);
 
         m_CurrentState.Value = p_State;
-    }
 
+        if (p_State == TableClientState.None)
+            m_CurrentClientSprite.Value = -1;
+    }
 
     public void CorrectFoodDelivered()
     {
+        if (m_CurrentState.Value != TableClientState.Waiting) return;
+
         SetTableClientFoodServerRpc(-1);
         SetTableClientStateServerRpc(TableClientState.Happy);
         SetTableClientStateWithDelayServerRpc(3f, TableClientState.Eating);
@@ -159,6 +173,8 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
     public void WrongFoodDelivered()
     {
+        if (m_CurrentState.Value != TableClientState.Waiting) return;
+        
         SetTableClientStateServerRpc(TableClientState.Mad);
         SetTableClientStateWithDelayServerRpc(3f, TableClientState.Waiting);
     }
@@ -168,6 +184,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SetTableClientFoodServerRpc(int p_NewFoodNumber)
     {
+        m_CurrentState.Value = TableClientState.Asking;
         m_CurrentFood.Value = p_NewFoodNumber;
 
         StartCoroutine(DelayTableClientState(3f, TableClientState.Waiting));
