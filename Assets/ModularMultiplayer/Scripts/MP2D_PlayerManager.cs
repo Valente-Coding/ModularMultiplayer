@@ -5,6 +5,7 @@ public class MP2D_PlayerManager : NetworkBehaviour
 {
     [Header("Player Conponents")]
     [SerializeField] private MP2D_PlayerMovement m_PlayerMovement;
+    [SerializeField] private MP2D_CameraController m_PlayerCameraController;
     [SerializeField] private MP_RespawnPoint m_PlayerRespawn;
     [SerializeField] private MP_NetworkedObjectSpawner m_PlayerObjectSpawner;
     [SerializeField] private Animator m_Animator;
@@ -17,6 +18,7 @@ public class MP2D_PlayerManager : NetworkBehaviour
     public Transform HoldItemPivot { get => m_HoldItemPivot; set => m_HoldItemPivot = value; }
     public NetworkObject HoldingItem { get => m_HoldingItem; set => m_HoldingItem = value; }
     public MP_NetworkedObjectSpawner PlayerObjectSpawner { get => m_PlayerObjectSpawner; set => m_PlayerObjectSpawner = value; }
+    public MP2D_CameraController PlayerCameraController { get => m_PlayerCameraController; set => m_PlayerCameraController = value; }
 
     private void Start()
     {

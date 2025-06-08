@@ -35,16 +35,20 @@ public class MP2D_CameraController : NetworkBehaviour
     [SerializeField] private float m_Delay = 1f;
 
 
-    private Transform m_PlayerCamera;
+    private Camera m_PlayerCamera;
     private Vector2 m_CameraOffset;
+    private Vector3 m_CameraFixedPosition = Vector3.zero;
     private float m_CameraZoom;
     private Queue<PointInSpace> m_PointsInSpace = new Queue<PointInSpace>();
+
+    public Vector3 CameraFixedPosition { get => m_CameraFixedPosition; set => m_CameraFixedPosition = value; }
+    public Camera PlayerCamera { get => m_PlayerCamera; set => m_PlayerCamera = value; }
 
     private void Start()
     {
         if (!IsOwner) return;
 
-        m_PlayerCamera = FindFirstObjectByType<Camera>().transform;
+        m_PlayerCamera = FindFirstObjectByType<Camera>();
         m_CameraOffset = m_DefaultOffset;
         m_CameraZoom = m_DefaultZoom;
     }
@@ -52,6 +56,12 @@ public class MP2D_CameraController : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
+
+        if (CameraFixedPosition != Vector3.zero)
+        {
+            m_PlayerCamera.transform.position = CameraFixedPosition;
+            return;
+        }
 
         m_PointsInSpace.Enqueue(new PointInSpace() { Position = transform.position, Time = Time.time });
         m_CameraZoom = Mathf.Clamp(m_CameraZoom + (-Input.mouseScrollDelta.y * m_ZoomSpeed), m_MinMaxZoom.Min, m_MinMaxZoom.Max);
@@ -68,8 +78,8 @@ public class MP2D_CameraController : NetworkBehaviour
         if(m_PointsInSpace.Count > 0){
             Vector2 l_DesiredPosition = m_PointsInSpace.Peek().Position + m_CameraOffset;
 
-            Vector2 l_SmoothedPosition = Vector2.Lerp(m_PlayerCamera.position, l_DesiredPosition, m_Stiffness * Time.deltaTime);
-            m_PlayerCamera.position = new Vector3(l_SmoothedPosition.x, l_SmoothedPosition.y, -m_CameraZoom);
+            Vector2 l_SmoothedPosition = Vector2.Lerp(m_PlayerCamera.transform.position, l_DesiredPosition, m_Stiffness * Time.deltaTime);
+            m_PlayerCamera.transform.position = new Vector3(l_SmoothedPosition.x, l_SmoothedPosition.y, -m_CameraZoom);
         }
 
     }

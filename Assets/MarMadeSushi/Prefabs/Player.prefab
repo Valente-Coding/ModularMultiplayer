@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   m_PlayerMovement: {fileID: 8208122612747043740}
+  m_PlayerCameraController: {fileID: 4490833450369868769}
   m_PlayerRespawn: {fileID: 2497440225271638029}
   m_PlayerObjectSpawner: {fileID: 3870547735917173780}
   m_Animator: {fileID: 5333566341244927328}

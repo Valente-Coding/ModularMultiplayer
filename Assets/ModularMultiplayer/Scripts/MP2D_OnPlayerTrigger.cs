@@ -12,6 +12,8 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
     [SerializeField] private UnityEvent m_EnterEvents;
     [SerializeField] private UnityEvent m_ExitEvents;
     [SerializeField] private UnityEvent m_OnInteractEvents;
+    [SerializeField] private UnityEvent<int> m_EnterEventsWithLocalPlayerId;
+    [SerializeField] private UnityEvent<int> m_ExitEventsWithLocalPlayerId;
 
     private bool m_IsInsideTrigger = false;
 
@@ -66,6 +68,7 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
         if (isEnter)
         {
             m_EnterEvents?.Invoke();
+            m_EnterEventsWithLocalPlayerId?.Invoke((int)networkObject.OwnerClientId);
             // Optionally notify all clients about the trigger event
             if (m_ServerOnly && IsServer)
             {
@@ -75,6 +78,7 @@ public class MP2D_OnPlayerTrigger : NetworkBehaviour
         else
         {
             m_ExitEvents?.Invoke();
+            m_ExitEventsWithLocalPlayerId?.Invoke((int)networkObject.OwnerClientId);
             // Optionally notify all clients about the trigger event
             if (m_ServerOnly && IsServer)
             {
