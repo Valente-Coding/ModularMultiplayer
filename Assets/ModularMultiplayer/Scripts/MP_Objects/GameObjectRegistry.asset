@@ -30,3 +30,8 @@ MonoBehaviour:
     m_Prefab: {fileID: 3369155657516129871, guid: 8ac433636c8683244b15ef2410f82cdf, type: 3}
     m_Description: 
     m_IsActive: 1
+  - m_EntryName: MarmadeCookedFish
+    m_PrefabId: 3
+    m_Prefab: {fileID: 3369155657516129871, guid: c2926735835f63a46b3a62e6abeeeac2, type: 3}
+    m_Description: 
+    m_IsActive: 1
