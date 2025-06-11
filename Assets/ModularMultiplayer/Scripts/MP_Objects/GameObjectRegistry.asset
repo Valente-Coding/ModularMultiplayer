@@ -25,3 +25,8 @@ MonoBehaviour:
     m_Prefab: {fileID: 3369155657516129871, guid: 6eba8033a47a88c44a32ae46e379bb66, type: 3}
     m_Description: 
     m_IsActive: 1
+  - m_EntryName: MarmadeRawFish
+    m_PrefabId: 2
+    m_Prefab: {fileID: 3369155657516129871, guid: 8ac433636c8683244b15ef2410f82cdf, type: 3}
+    m_Description: 
+    m_IsActive: 1

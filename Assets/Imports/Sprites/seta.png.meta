@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b59df61ef75fa57408001a9a86c19447
+guid: a29d05034427593489b2dec0300e8252
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "PeixeCozinhado_MELHOR_RESOLU\xC7\xC3O_0"
+      name: seta_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 840
-        height: 410
+        width: 137
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee14112c93c95fc42b16240bdfd766f8
-      internalID: 2113534304
+      spriteID: fdfb0b2da98a7164fa58e4066825b00a
+      internalID: 1413610580
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 17bd9d800b638224688e36003ed74b08
+    spriteID: 7b9d779392493ff49b05b9225258f25b
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "PeixeCozinhado_MELHOR_RESOLU\xC7\xC3O_0": 2113534304
+      seta_0: 1413610580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
