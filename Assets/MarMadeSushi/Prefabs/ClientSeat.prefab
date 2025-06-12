@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2624565410
+  GlobalObjectIdHash: 3116485558
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 693875927
+  GlobalObjectIdHash: 2648295908
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 770929628
+  GlobalObjectIdHash: 711847366
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -381,8 +381,7 @@ MonoBehaviour:
   m_TableClientAnimator: {fileID: 1748671782323846303}
   m_TableClientEmoteSprite: {fileID: 8866780407560972575}
   m_ClientItemCollector: {fileID: 8699375276942446628}
-  m_ClientSprites:
-  - {fileID: -878939723, guid: 6c4653287e2a3db4b82d6de1ba3f17fd, type: 3}
+  m_ClientSprites: []
   m_IntervalBetweenClients: 10
   m_TableClientEmotes:
   - EmoteClientState: 1
@@ -585,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6899041383139638479, guid: 3b10deb01b1ff96458b2f26ed00f8d2f, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2266690242
+      value: 586882236
       objectReference: {fileID: 0}
     - target: {fileID: 6899041383139638479, guid: 3b10deb01b1ff96458b2f26ed00f8d2f, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MP2D_TableClientManager : NetworkBehaviour
 {
-    private enum TableClientState
+    public enum TableClientState
     {
         None,
         Choosing,
@@ -49,9 +50,15 @@ public class MP2D_TableClientManager : NetworkBehaviour
     [SerializeField] private float m_ChooseFoodDelay = 5f;
     [SerializeField] private float m_TimeToEatFood = 10f;
 
+    [Header("Interaction Settings")]
+    [SerializeField] private Collider2D m_InteractionCollider;
+
     private NetworkVariable<TableClientState> m_CurrentState = new NetworkVariable<TableClientState>(TableClientState.None, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private NetworkVariable<int> m_CurrentClientSprite = new NetworkVariable<int>(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private NetworkVariable<int> m_CurrentFood = new NetworkVariable<int>(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    public NetworkVariable<TableClientState> CurrentState { get => m_CurrentState; set => m_CurrentState = value; }
+    public UnityEvent<TableClientState> OnClientStateChange = new UnityEvent<TableClientState>();
 
     public override void OnNetworkSpawn()
     {
@@ -65,6 +72,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
         if (!IsServer) return;
 
+        m_InteractionCollider.enabled = false;
         StartCoroutine(SpawnTableClient());
     }
 
@@ -95,6 +103,8 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
         m_TableClientEmoteSprite.sprite = l_EmoteSprite;
         m_TableClientEmoteSprite.enabled = true;
+
+        OnClientStateChange?.Invoke(p_NewValue);
     }
 
     private void OnTableClientSpriteChange(int p_OldValue, int p_NewValue)
@@ -138,11 +148,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
     {
         switch (m_CurrentState.Value)
         {
-            case TableClientState.ReadyToAsk:
-                SetTableClientFoodServerRpc(UnityEngine.Random.Range(0, m_FoodChoices.Count));
-                break;
-
-            case TableClientState.Waiting:
+            case TableClientState.Asking:
                 m_ClientItemCollector.CollectItem();
                 break;
 
@@ -168,13 +174,13 @@ public class MP2D_TableClientManager : NetworkBehaviour
         SetTableClientFoodServerRpc(-1);
         SetTableClientStateServerRpc(TableClientState.Happy);
         SetTableClientStateWithDelayServerRpc(3f, TableClientState.Eating);
-        SetTableClientStateWithDelayServerRpc(3f + m_TimeToEatFood, TableClientState.None);
+        SetTableClientStateWithDelayServerRpc(3f + m_TimeToEatFood, TableClientState.ReadyToCheck);
     }
 
     public void WrongFoodDelivered()
     {
         if (m_CurrentState.Value != TableClientState.Waiting) return;
-        
+
         SetTableClientStateServerRpc(TableClientState.Mad);
         SetTableClientStateWithDelayServerRpc(3f, TableClientState.Waiting);
     }
@@ -182,17 +188,20 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetTableClientFoodServerRpc(int p_NewFoodNumber)
+    public void SetTableClientFoodServerRpc(int p_NewFoodNumber)
     {
         m_CurrentState.Value = TableClientState.Asking;
         m_CurrentFood.Value = p_NewFoodNumber;
 
-        StartCoroutine(DelayTableClientState(3f, TableClientState.Waiting));
+        if (p_NewFoodNumber != -1)
+            m_InteractionCollider.enabled = true;
+        else
+            m_InteractionCollider.enabled = false;
     }
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetTableClientStateServerRpc(TableClientState p_ClientState)
+    public void SetTableClientStateServerRpc(TableClientState p_ClientState)
     {
         m_CurrentState.Value = p_ClientState;
     }
@@ -202,6 +211,11 @@ public class MP2D_TableClientManager : NetworkBehaviour
     private void SetTableClientStateWithDelayServerRpc(float p_DelayInSeconds, TableClientState p_ClientState)
     {
         StartCoroutine(DelayTableClientState(p_DelayInSeconds, p_ClientState));
+    }
+
+    public int GetFoodChoicesAmount()
+    {
+        return m_FoodChoices.Count;
     }
                          
 }
