@@ -18,6 +18,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
         Mad,
         Eating,
         ReadyToCheck,
+        AskToCheck,
     }
 
     [Serializable]
@@ -56,6 +57,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
     private NetworkVariable<TableClientState> m_CurrentState = new NetworkVariable<TableClientState>(TableClientState.None, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private NetworkVariable<int> m_CurrentClientSprite = new NetworkVariable<int>(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private NetworkVariable<int> m_CurrentFood = new NetworkVariable<int>(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<bool> m_InteractionColliderActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public NetworkVariable<TableClientState> CurrentState { get => m_CurrentState; set => m_CurrentState = value; }
     public UnityEvent<TableClientState> OnClientStateChange = new UnityEvent<TableClientState>();
@@ -67,30 +69,35 @@ public class MP2D_TableClientManager : NetworkBehaviour
         m_CurrentFood.OnValueChanged += OnTableClientFoodChange;
         m_ClientItemCollector.OnCollectCorrectItem.AddListener(CorrectFoodDelivered);
         m_ClientItemCollector.OnCollectWrongItem.AddListener(WrongFoodDelivered);
+        m_InteractionColliderActive.OnValueChanged += OnInteractionColliderActive;          
 
         SyncNewPlayer();
 
         if (!IsServer) return;
-
-        m_InteractionCollider.enabled = false;
-        StartCoroutine(SpawnTableClient());
     }
 
     private void SyncNewPlayer()
     {
+        m_InteractionCollider.enabled = m_InteractionColliderActive.Value;
         OnTableClientStateChange(TableClientState.None, m_CurrentState.Value);
         OnTableClientSpriteChange(-1, m_CurrentClientSprite.Value);
         OnTableClientFoodChange(-1, m_CurrentFood.Value);
     }
 
+    private void OnInteractionColliderActive(bool p_OldValue, bool p_NewValue)
+    {
+        m_InteractionCollider.enabled = p_NewValue;
+    }
+
     private void OnTableClientStateChange(TableClientState p_OldValue, TableClientState p_NewValue)
     {
+        OnClientStateChange?.Invoke(p_NewValue);
+
         if (p_NewValue == TableClientState.None)
         {
             m_TableClientSprite.enabled = false;
             m_TableClientEmoteSprite.enabled = false;
 
-            StartCoroutine(SpawnTableClient());
             return;
         }
 
@@ -103,8 +110,6 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
         m_TableClientEmoteSprite.sprite = l_EmoteSprite;
         m_TableClientEmoteSprite.enabled = true;
-
-        OnClientStateChange?.Invoke(p_NewValue);
     }
 
     private void OnTableClientSpriteChange(int p_OldValue, int p_NewValue)
@@ -132,7 +137,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
         m_TableClientEmoteSprite.enabled = true;
     }
 
-    private IEnumerator SpawnTableClient()
+    public IEnumerator SpawnTableClient()
     {
         yield return new WaitForSeconds(m_IntervalBetweenClients);
 
@@ -169,7 +174,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
     public void CorrectFoodDelivered()
     {
-        if (m_CurrentState.Value != TableClientState.Waiting) return;
+        if (m_CurrentState.Value != TableClientState.Asking) return;
 
         SetTableClientFoodServerRpc(-1);
         SetTableClientStateServerRpc(TableClientState.Happy);
@@ -179,10 +184,10 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
     public void WrongFoodDelivered()
     {
-        if (m_CurrentState.Value != TableClientState.Waiting) return;
+        /* if (m_CurrentState.Value != TableClientState.Asking) return;
 
         SetTableClientStateServerRpc(TableClientState.Mad);
-        SetTableClientStateWithDelayServerRpc(3f, TableClientState.Waiting);
+        SetTableClientStateWithDelayServerRpc(3f, TableClientState.Asking); */
     }
 
 
@@ -194,9 +199,9 @@ public class MP2D_TableClientManager : NetworkBehaviour
         m_CurrentFood.Value = p_NewFoodNumber;
 
         if (p_NewFoodNumber != -1)
-            m_InteractionCollider.enabled = true;
+            m_InteractionColliderActive.Value = true;
         else
-            m_InteractionCollider.enabled = false;
+            m_InteractionColliderActive.Value = false;
     }
 
 
