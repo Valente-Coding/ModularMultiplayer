@@ -18,10 +18,12 @@ public class MP2D_PlayerMovement : NetworkBehaviour
     private bool m_Jumping = false;
     private bool m_IsRunning = false;
     private bool m_IsGrounded = false;
+    private bool m_IsFrozen = false;
 
     public Vector2 Velocity { get => m_Velocity; set => m_Velocity = value; }
     public bool IsRunning { get => m_IsRunning; set => m_IsRunning = value; }
     public bool IsGrounded { get => m_IsGrounded; set => m_IsGrounded = value; }
+    public bool IsFrozen { get => m_IsFrozen; set => m_IsFrozen = value; }
 
     private void Start()
     {
@@ -34,6 +36,7 @@ public class MP2D_PlayerMovement : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
+        if (m_IsFrozen) return;
 
         Jump(m_CanJump ? Input.GetKeyDown(KeyCode.Space) : false, m_CanJump ? Input.GetKeyUp(KeyCode.Space) : false, m_GroundCheck != null ? m_GroundCheck.Grounded : true);
     }
@@ -42,7 +45,10 @@ public class MP2D_PlayerMovement : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        Move(Input.GetAxis("Horizontal"), m_CanSprint ? Input.GetKey(KeyCode.LeftShift) : false);
+        float l_XMovement = !m_IsFrozen ? Input.GetAxis("Horizontal") : 0f;
+        bool l_Sprinting = m_CanSprint ? !m_IsFrozen ? Input.GetKey(KeyCode.LeftShift) : false : false;
+
+        Move(l_XMovement, l_Sprinting);
 
         m_RB.linearVelocity = m_Velocity * Time.fixedDeltaTime;
     }

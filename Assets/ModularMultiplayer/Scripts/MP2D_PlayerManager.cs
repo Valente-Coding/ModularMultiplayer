@@ -19,10 +19,12 @@ public class MP2D_PlayerManager : NetworkBehaviour
     public NetworkObject HoldingItem { get => m_HoldingItem; set => m_HoldingItem = value; }
     public MP_NetworkedObjectSpawner PlayerObjectSpawner { get => m_PlayerObjectSpawner; set => m_PlayerObjectSpawner = value; }
     public MP2D_CameraController PlayerCameraController { get => m_PlayerCameraController; set => m_PlayerCameraController = value; }
+    public Animator PlayerAnimator { get => m_Animator; set => m_Animator = value; }
+    public MP2D_PlayerMovement PlayerMovement { get => m_PlayerMovement; set => m_PlayerMovement = value; }
 
     private void Start()
     {
-        if (!IsOwner) m_Sprite.sortingOrder = -2;
+        if (!IsOwner) m_Sprite.sortingOrder = 18;
 
         if (!IsOwner) return;
 

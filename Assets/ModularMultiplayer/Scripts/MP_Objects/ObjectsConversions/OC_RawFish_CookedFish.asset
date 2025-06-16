@@ -15,4 +15,4 @@ MonoBehaviour:
   ConversionName: New Conversion
   InputPrefab: {fileID: 3369155657516129871, guid: 8ac433636c8683244b15ef2410f82cdf, type: 3}
   OutputPrefab: {fileID: 3369155657516129871, guid: c2926735835f63a46b3a62e6abeeeac2, type: 3}
-  ConversionTimeInSeconds: 30
+  ConversionTimeInSeconds: 15

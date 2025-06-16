@@ -1,9 +1,16 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MP2D_PlayerObjectConversion : NetworkBehaviour
 {
     [SerializeField] private SO_ObjectConversion m_ConversionData;
+    [SerializeField] private UnityEvent<int> m_OnInsertObject;
+    [SerializeField] private UnityEvent<int> m_OnReadyObject;
+    [SerializeField] private UnityEvent<int> m_OnTakeObject;
 
     private System.DateTime m_EpochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 
@@ -12,12 +19,7 @@ public class MP2D_PlayerObjectConversion : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        m_Converting.OnValueChanged += OnSomeValueChanged;
-    }
 
-    private void OnSomeValueChanged(bool previous, bool current)
-    {
-        Debug.Log($"Detected NetworkVariable Change: Previous: {previous} | Current: {current}");
     }
 
     private bool HasInputPrefab(GameObject p_Object)
@@ -33,18 +35,22 @@ public class MP2D_PlayerObjectConversion : NetworkBehaviour
         return l_CurrentTime >= m_ConvertionTimeEnd.Value;
     }
 
-    [ServerRpc(RequireOwnership=false)]
-    private void StartObjectConversionServerRpc()
+    [ServerRpc(RequireOwnership = false)]
+    private void StartObjectConversionServerRpc(int p_PlayerId)
     {
         int l_CurrentTime = (int)(System.DateTime.UtcNow - m_EpochStart).TotalSeconds;
         m_ConvertionTimeEnd.Value = l_CurrentTime + m_ConversionData.ConversionTimeInSeconds;
         m_Converting.Value = true;
+        m_OnInsertObject?.Invoke(p_PlayerId);
+
+        StartCoroutine(SetConversionReady(p_PlayerId));
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void ResetObjectConversionServerRpc()
+    private void ResetObjectConversionServerRpc(int p_PlayerId)
     {
         m_Converting.Value = false;
+        m_OnTakeObject?.Invoke(p_PlayerId);
     }
 
     private void TakeOutputPrefab()
@@ -59,7 +65,7 @@ public class MP2D_PlayerObjectConversion : NetworkBehaviour
             MP2D_PlayerManager.Instance.transform.rotation
         );
 
-        ResetObjectConversionServerRpc();
+        ResetObjectConversionServerRpc((int)NetworkManager.Singleton.LocalClientId);
     }
 
     private void InsertInputPrefab()
@@ -70,7 +76,7 @@ public class MP2D_PlayerObjectConversion : NetworkBehaviour
 
         MP2D_PlayerManager.Instance.PlayerObjectSpawner.DespawnObject(MP2D_PlayerManager.Instance.HoldingItem);
 
-        StartObjectConversionServerRpc();
+        StartObjectConversionServerRpc((int)NetworkManager.Singleton.LocalClientId);
     }
 
     public void OnPlayerInteraction()
@@ -79,6 +85,13 @@ public class MP2D_PlayerObjectConversion : NetworkBehaviour
             TakeOutputPrefab();
         else
             InsertInputPrefab();
+    }
+
+    private IEnumerator SetConversionReady(int p_PlayerId)
+    {
+        yield return new WaitForSeconds(m_ConversionData.ConversionTimeInSeconds);
+
+        m_OnReadyObject?.Invoke(p_PlayerId);
     }
 
 }

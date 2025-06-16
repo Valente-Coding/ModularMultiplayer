@@ -35,3 +35,8 @@ MonoBehaviour:
     m_Prefab: {fileID: 3369155657516129871, guid: c2926735835f63a46b3a62e6abeeeac2, type: 3}
     m_Description: 
     m_IsActive: 1
+  - m_EntryName: MarmadeTail
+    m_PrefabId: 4
+    m_Prefab: {fileID: 3369155657516129871, guid: 268341fc7b96da64f95563a0c1d49700, type: 3}
+    m_Description: 
+    m_IsActive: 1

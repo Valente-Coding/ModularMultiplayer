@@ -108,12 +108,34 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "Rabo_MELHOR_RESOLU\xC7\xC3O_0"
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 510
+        height: 980
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a58c90b116175546be7e98db05d2039
+      internalID: 1048335951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dd1b8d5ffdce08144bccc18dbec58bb9
     internalID: 0
     vertices: []
     indices: 
@@ -122,7 +144,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Rabo_MELHOR_RESOLU\xC7\xC3O_0": 1048335951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using Unity.Netcode;
@@ -136,3 +137,5 @@ public class SceneSettingsTab : INetcodeToolsTab
 
     }
 }
+
+#endif

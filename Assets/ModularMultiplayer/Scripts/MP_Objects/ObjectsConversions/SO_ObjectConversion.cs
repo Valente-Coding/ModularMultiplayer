@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "OC_", menuName = "ModularMultiplayer/SO ObjectConversion")]
 public class SO_ObjectConversion : ScriptableObject
