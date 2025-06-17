@@ -40,6 +40,8 @@ public class MP2D_TableManager : NetworkBehaviour
 
     private void OnClientStateChange(MP2D_TableClientManager.TableClientState p_ClientNewState)
     {
+        if (!IsServer) return;
+        
         if (MP2D_TableClientManager.TableClientState.ReadyToAsk == p_ClientNewState)
             m_ReadyToAsk++;
 
@@ -48,7 +50,7 @@ public class MP2D_TableManager : NetworkBehaviour
 
 
         if (m_ReadyToCheck >= m_TableClients.Count)
-            SetClientsState(MP2D_TableClientManager.TableClientState.AskToCheck);
+            SetClientsStateServerRpc(MP2D_TableClientManager.TableClientState.AskToCheck);
 
         if (m_ReadyToAsk >= m_TableClients.Count || m_ReadyToCheck >= m_TableClients.Count)
             SetTableInteractionColliderServerRpc(true);
@@ -81,17 +83,18 @@ public class MP2D_TableManager : NetworkBehaviour
     {
         m_ReadyToCheck = 0;
 
-        SetClientsState(MP2D_TableClientManager.TableClientState.None);
+        SetClientsStateServerRpc(MP2D_TableClientManager.TableClientState.None);
 
         SetTableInteractionColliderServerRpc(false);
 
-        MP_MMS_GameLoop.Instance.GiveGoodRatingServerRpc();
+        MP_MMS_GameLoop.Instance.AddScoreServerRpc();
 
         SpawnNewClientsServerRpc();
 
     }
 
-    private void SetClientsState(MP2D_TableClientManager.TableClientState p_State)
+    [ServerRpc(RequireOwnership = false)]
+    private void SetClientsStateServerRpc(MP2D_TableClientManager.TableClientState p_State)
     {
         m_TableClients.ForEach(m_Client =>
         {
@@ -120,16 +123,24 @@ public class MP2D_TableManager : NetworkBehaviour
 
     private void DespawnClients()
     {
-        MP_MMS_GameLoop.Instance.GiveBadRatingServerRpc();
-        
         m_ReadyToAsk = 0;
         m_ReadyToCheck = 0;
 
-        SetClientsState(MP2D_TableClientManager.TableClientState.None);
+        SetClientsStateServerRpc(MP2D_TableClientManager.TableClientState.None);
 
         SetTableInteractionColliderServerRpc(false);
 
         SpawnNewClientsServerRpc();
+    }
+
+    public void StopClients()
+    {
+        m_ReadyToAsk = 0;
+        m_ReadyToCheck = 0;
+
+        SetClientsStateServerRpc(MP2D_TableClientManager.TableClientState.None);
+
+        SetTableInteractionColliderServerRpc(false);
     }
 
     private IEnumerator LeftHanging()

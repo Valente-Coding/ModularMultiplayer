@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -34,10 +35,18 @@ public class MP_ConnectLan : MonoBehaviour
 
     public void StartClient(TextMeshProUGUI p_IPAddressInput)
     {
+        var transport = GameObject.FindFirstObjectByType<UnityTransport>();
+        transport.ConnectionData.Address = p_IPAddressInput.text.Trim((char)8203); ;
+
+        StartCoroutine(TryToConnect());
+    }
+
+    private IEnumerator TryToConnect()
+    {
         NetworkManager.Singleton.Shutdown();
 
-        var transport = GameObject.FindFirstObjectByType<UnityTransport>();
-        transport.ConnectionData.Address = p_IPAddressInput.text.Trim((char)8203);;
+        yield return new WaitForSeconds(5f);
+
         NetworkManager.Singleton.StartClient();
     }
 
