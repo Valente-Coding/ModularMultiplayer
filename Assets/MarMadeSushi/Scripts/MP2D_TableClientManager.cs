@@ -61,6 +61,7 @@ public class MP2D_TableClientManager : NetworkBehaviour
 
     public NetworkVariable<TableClientState> CurrentState { get => m_CurrentState; set => m_CurrentState = value; }
     public UnityEvent<TableClientState> OnClientStateChange = new UnityEvent<TableClientState>();
+    public float IntervalBetweenClients { get => m_IntervalBetweenClients; set => m_IntervalBetweenClients = value; }
 
     public override void OnNetworkSpawn()
     {

@@ -17,11 +17,14 @@ public class MP_ConnectLan : MonoBehaviour
         var transport = GameObject.FindFirstObjectByType<UnityTransport>();
         transport.ConnectionData.Address = GetAllLocalIPv4(NetworkInterfaceType.Ethernet).FirstOrDefault();
 
-        NetworkManager.Singleton.OnServerStarted += () => {
+        NetworkManager.Singleton.OnServerStarted += () =>
+        {
             var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
             m_IPAddressText.text = GetAllLocalIPv4(NetworkInterfaceType.Ethernet).FirstOrDefault();
             Debug.Log($"Server started successfully on {transport.ConnectionData.Address}:{transport.ConnectionData.Port}");
         };
+
+        StartHost();
     }
 
     public void StartHost()
@@ -31,6 +34,8 @@ public class MP_ConnectLan : MonoBehaviour
 
     public void StartClient(TextMeshProUGUI p_IPAddressInput)
     {
+        NetworkManager.Singleton.Shutdown();
+
         var transport = GameObject.FindFirstObjectByType<UnityTransport>();
         transport.ConnectionData.Address = p_IPAddressInput.text.Trim((char)8203);;
         NetworkManager.Singleton.StartClient();
